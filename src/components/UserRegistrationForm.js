@@ -1,27 +1,27 @@
 import { useState } from "react";
-import isEmailValid from "../addition/isEmailValid";
+import {isEmailValid} from "../helpers/validations";
 
-const UserRegistrForm = () => {
+const UserRegistrationForm = () => {
     const [emailValue, setEmailValue] = useState("");
     const [passwordValue, setPasswordValue] = useState("");
     const [confirmPassValue, setConfirmPassValue] = useState("");
-    const [errMessage, setErrMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleEmailChange = ({target: {value}}) => {
-        if (errMessage) {
-            setErrMessage('');
+        if (errorMessage) {
+            setErrorMessage('');
         }
         setEmailValue(value);
     }
     const handlePasswordChange = ({target: {value}}) => {
-        if (errMessage) {
-            setErrMessage('');
+        if (errorMessage) {
+            setErrorMessage('');
         }
         setPasswordValue(value);
     }
     const handleConfirmPassChange = ({target: {value}}) => {
-        if (errMessage) {
-            setErrMessage('');
+        if (errorMessage) {
+            setErrorMessage('');
         }
         setConfirmPassValue(value);
     }
@@ -29,16 +29,16 @@ const UserRegistrForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (emailValue === "" || passwordValue === "" || confirmPassValue === "") {
-            setErrMessage("All fields are required!");
-            return
+            setErrorMessage("All fields are required!");
+            return;
         } 
         if (!isEmailValid(emailValue)) {
-            setErrMessage("Please, enter valid email!");
-            return
+            setErrorMessage("Please, enter valid email!");
+            return;
         }
         if (passwordValue !== confirmPassValue) {
-            setErrMessage("Password not confirmed! Please enter the correct password!");
-            return
+            setErrorMessage("Passwords must be the same!");
+            return;
         }
         console.log({email: emailValue, password: passwordValue, confirm: confirmPassValue});
     }
@@ -82,7 +82,7 @@ const UserRegistrForm = () => {
                     onChange={handleConfirmPassChange}
                 />
             </label>
-            {errMessage && <p className="error">{errMessage}</p>}
+            {errorMessage && <p className="error">{errorMessage}</p>}
             <div>
                  <button type="submit">Sign up</button>
                  <button type="reset" onClick={handleResetClick}>Reset</button>
@@ -91,4 +91,4 @@ const UserRegistrForm = () => {
     )
 };
 
-export default UserRegistrForm;
+export default UserRegistrationForm;

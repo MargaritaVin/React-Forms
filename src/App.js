@@ -1,11 +1,11 @@
 import './App.css';
-import UserRegistrForm from './components/UserRegistrForm';
+import UserRegistrationForm  from './components/UserRegistrationForm';
 import UserProfileForm from './components/UserProfileForm'
 
 function App() {
   return (
     <>
-      <UserRegistrForm />
+      <UserRegistrationForm  />
       <UserProfileForm />
     </>
   );

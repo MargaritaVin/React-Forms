@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import {getInputValidations} from "../helpers/validations";
 
 const UserProfileForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -15,30 +16,18 @@ const UserProfileForm = () => {
              <input 
                 type="text" 
                 placeholder="First name..." 
-                {...register("firstname", {
-                    required: "First name is required field!",
-                    minLength: {
-                        value: 3, 
-                        message: "Min length of first name is 3"
-                    }
-                })}
+                {...register("firstName", getInputValidations("firstName"))}
              />
-             {errors.firstname && (<p className="error">{errors.firstname.message}</p>)} 
+             {errors.firstName && (<p className="error">{errors.firstName.message}</p>)} 
             </label>
             <label>
              Last name:{" "}
              <input 
                 type="text" 
                 placeholder="Last name..." 
-                {...register("lastname", {
-                    required: "Last name is required field!",
-                    minLength: {
-                        value: 3, 
-                        message: "Min length of last name is 3"
-                    }
-                })}
+                {...register("lastName", getInputValidations("lastName"))}
              />
-             {errors.lastname && (<p className="error">{errors.lastname.message}</p>)} 
+             {errors.lastName && (<p className="error">{errors.lastName.message}</p>)} 
             </label>
             <label>
              Country:{" "}
